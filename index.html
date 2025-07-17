@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Express - Nossas Franquias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .rating-stars {
+            color: #fbbf24;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+        
+        .footer-links a:hover {
+            color: #f59e0b;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-3xl text-amber-500 mr-2"></i>
+                    <span class="text-2xl font-bold text-gray-800">Gourmet Express</span>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active-nav text-gray-800 font-medium">Início</a>
+                    <a href="#franquias" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Franquias</a>
+                    <a href="#sobre" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Sobre Nós</a>
+                    <a href="#contato" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Contato</a>
+                </nav>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-800 font-medium">Início</a>
+                <a href="#franquias" class="block py-2 text-gray-600 hover:text-gray-800">Franquias</a>
+                <a href="#sobre" class="block py-2 text-gray-600 hover:text-gray-800">Sobre Nós</a>
+                <a href="#contato" class="block py-2 text-gray-600 hover:text-gray-800">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Sabor que Conquista</h1>
+                    <p class="text-xl text-gray-600 mb-8">Nossas franquias oferecem experiências gastronômicas únicas em todo o país. Descubra o restaurante mais próximo de você!</p>
+                    <div class="flex space-x-4">
+                        <a href="#franquias" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Nossas Franquias</a>
+                        <a href="#contato" class="border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white font-bold py-3 px-6 rounded-lg transition duration-300">Fale Conosco</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurante Gourmet Express" class="rounded-xl shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franquias Section -->
+    <section id="franquias" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nossas Franquias</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Conheça nossas unidades espalhadas pelo país, cada uma com seu charme único.</p>
+            </div>
+            
+            <!-- Filter -->
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button data-filter="all" class="px-4 py-2 text-sm font-medium rounded-l-lg bg-amber-500 text-white filter-btn active">Todas</button>
+                    <button data-filter="norte" class="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300 filter-btn">Norte</button>
+                    <button data-filter="nordeste" class="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300 filter-btn">Nordeste</button>
+                    <button data-filter="centro-oeste" class="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300 filter-btn">Centro-Oeste</button>
+                    <button data-filter="sudeste" class="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 hover:bg-gray-300 filter-btn">Sudeste</button>
+                    <button data-filter="sul" class="px-4 py-2 text-sm font-medium rounded-r-lg bg-gray-200 text-gray-800 hover:bg-gray-300 filter-btn">Sul</button>
+                </div>
+            </div>
+            
+            <!-- Restaurants Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Restaurant 1 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="sudeste">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Gourmet Express São Paulo" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">Aberto</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express SP</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">4.5</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Av. Paulista, 1000 - São Paulo/SP</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(11) 9999-9999</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Culinária Brasileira</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Rodízio</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Ambiente Familiar</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197584455557!2d-46.65867592468739!3d-23.56134717880024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1689871043701!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Restaurant 2 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="sul">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gourmet Express Curitiba" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">Aberto</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express PR</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">4.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">R. XV de Novembro, 500 - Curitiba/PR</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(41) 8888-8888</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Culinária Italiana</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vinho</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Jantar Romântico</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.488715573179!2d-49.27710092468737!3d-25.43606237767593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce46939f3a5a5%3A0x9b10a5b1f6b806e0!2sR.%20XV%20de%20Novembro%2C%20500%20-%20Centro%2C%20Curitiba%20-%20PR%2C%2080020-310!5e0!3m2!1spt-BR!2sbr!4v1689871170422!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Restaurant 3 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="nordeste">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Gourmet Express Salvador" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">Fechado</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express BA</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Av. Sete de Setembro, 200 - Salvador/BA</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(71) 7777-7777</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Frutos do Mar</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Terraço</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vista para o Mar</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.987427147171!2d-38.51338892468736!3d-12.97246296312348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161b4a6c4e5a8b%3A0x3d8f1e8e0c1b8b8f!2sAv.%20Sete%20de%20Setembro%2C%20200%20-%20Com%C3%A9rcio%2C%20Salvador%20-%20BA%2C%2040015-160!5e0!3m2!1spt-BR!2sbr!4v1689871234567!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Restaurant 4 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="centro-oeste">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gourmet Express Brasília" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">Aberto</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express DF</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">CLS 203, Bloco A - Brasília/DF</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(61) 6666-6666</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Culinária Internacional</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Happy Hour</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Ambiente Executivo</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.123456789012!2d-47.89098762468736!3d-15.79423456789123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b3b3b3b3b3b%3A0x3b3b3b3b3b3b3b3b!2sCLS%20203%2C%20Bloco%20A%20-%20Asa%20Sul%2C%20Bras%C3%ADlia%20-%20DF%2C%2070283-540!5e0!3m2!1spt-BR!2sbr!4v1689871290123!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Restaurant 5 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="norte">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Gourmet Express Manaus" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">Aberto</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express AM</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">4.5</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Av. Djalma Batista, 500 - Manaus/AM</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(92) 5555-5555</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Culinária Regional</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Peixes</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Ambiente Rústico</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.123456789012!2d-60.01234567890123!3d-3.1234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x926c1bc2b3b3b3b3%3A0x3b3b3b3b3b3b3b3b!2sAv.%20Djalma%20Batista%2C%20500%20-%20Chapada%2C%20Manaus%20-%20AM%2C%2069057-000!5e0!3m2!1spt-BR!2sbr!4v1689871345678!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+                
+                <!-- Restaurant 6 -->
+                <div class="restaurant-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105" data-region="sudeste">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gourmet Express Rio" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">Aberto</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-800">Gourmet Express RJ</h3>
+                            <div class="flex items-center">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="ml-1 text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Av. Atlântica, 2000 - Rio de Janeiro/RJ</p>
+                        <div class="flex items-center text-gray-500 mb-4">
+                            <i class="fas fa-phone-alt mr-2"></i>
+                            <span>(21) 4444-4444</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Frutos do Mar</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vista para o Mar</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Rodízio</span>
+                        </div>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.123456789012!2d-43.17234567890123!3d-22.98765432109876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd4b1dd8b1b1b1b%3A0x3b3b3b3b3b3b3b3b!2sAv.%20Atl%C3%A2ntica%2C%202000%20-%20Copacabana%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022040-001!5e0!3m2!1spt-BR!2sbr!4v1689871401234!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <a href="#" class="mt-4 inline-block w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Ver Cardápio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">O Que Nossos Clientes Dizem</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Experiências reais de quem já visitou nossas franquias.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Silva" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maria Silva</h4>
+                            <div class="flex">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"O restaurante em São Paulo tem uma atmosfera incrível e a comida é divina! O rodízio de carnes é imperdível, com cortes de primeira qualidade."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Gourmet Express SP</span>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Carlos Oliveira" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Carlos Oliveira</h4>
+                            <div class="flex">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"A unidade de Curitiba tem um ambiente perfeito para jantares românticos. Os pratos italianos são autênticos e a carta de vinhos é excelente."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Gourmet Express PR</span>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Santos" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Ana Santos</h4>
+                            <div class="flex">
+                                <span class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Visitei a franquia de Salvador e fiquei encantada com a vista para o mar e a qualidade dos frutos do mar. O atendimento foi impecável e atencioso."</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>Gourmet Express BA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Ver Mais Avaliações</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Nossa História</h2>
+                    <p class="text-gray-600 mb-4">Fundada em 2010, a Gourmet Express começou como um pequeno restaurante em São Paulo e rapidamente se transformou em uma rede de franquias de sucesso em todo o Brasil.</p>
+                    <p class="text-gray-600 mb-6">Nosso compromisso é oferecer experiências gastronômicas memoráveis, com ingredientes frescos e preparos que valorizam a diversidade da culinária brasileira e internacional.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-utensils text-amber-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">+50 Pratos Exclusivos</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-store text-amber-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">6 Franquias</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 p-3 rounded-full mr-3">
+                                <i class="fas fa-users text-amber-500"></i>
+                            </div>
+                            <span class="font-medium text-gray-800">+10.000 Clientes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Equipe Gourmet Express" class="rounded-xl shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="bg-amber-500 text-white p-3 rounded-full mr-3">
+                                    <i class="fas fa-award text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800">Melhor Rede de Restaurantes</p>
+                                    <p class="text-sm text-gray-600">Prêmio Gastronomia 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franchise Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Seja um Franqueado</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Junte-se à nossa rede de sucesso e leve o conceito Gourmet Express para sua cidade.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Modelo Comprovado</h3>
+                    <p class="text-gray-600">Sistema operacional testado e aprovado, com alto índice de satisfação dos clientes.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Treinamento Completo</h3>
+                    <p class="text-gray-600">Capacitação em todas as áreas: operacional, administrativa e de marketing.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-amber-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Suporte Contínuo</h3>
+                    <p class="text-gray-600">Assessoria permanente para garantir o sucesso do seu negócio.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contato" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Quero Saber Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Entre em Contato</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Tem dúvidas, sugestões ou quer se tornar um franqueado? Fale conosco!</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nome</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition duration-300" placeholder="Seu nome">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition duration-300" placeholder="seu@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Assunto</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition duration-300">
+                                <option value="">Selecione um assunto</option>
+                                <option value="franchise">Franquias</option>
+                                <option value="reservation">Reservas</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition duration-300" placeholder="Sua mensagem..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Enviar Mensagem</button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-xl h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-amber-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Endereço</h4>
+                                    <p class="text-gray-600">Av. Paulista, 1000 - São Paulo/SP</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-amber-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Telefone</h4>
+                                    <p class="text-gray-600">(11) 9999-9999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-amber-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">E-mail</h4>
+                                    <p class="text-gray-600">contato@gourmetexpress.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-amber-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Horário de Funcionamento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 11h às 23h</p>
+                                    <p class="text-gray-600">Sábado e Domingo: 11h às 00h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-800 mb-4">Siga-nos nas Redes Sociais</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-200 hover:bg-amber-500 hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-amber-500 hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-amber-500 hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-amber-500 hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-amber-500">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-white mb-2">Receba Nossas Novidades</h3>
+                    <p class="text-amber-100">Cadastre-se para receber promoções exclusivas e novidades.</p>
+                </div>
+                
+                <form class="flex w-full md:w-auto">
+                    <input type="email" placeholder="Seu e-mail" class="px-4 py-3 rounded-l-lg focus:outline-none w-full md:w-64">
+                    <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white font-bold px-6 py-3 rounded-r-lg transition duration-300">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-3xl text-amber-500 mr-2"></i>
+                        <span class="text-2xl font-bold">Gourmet Express</span>
+                    </div>
+                    <p class="text-gray-400">Oferecendo experiências gastronômicas memoráveis desde 2010.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 footer-links">
+                        <li><a href="#home" class="text-gray-400 hover:text-amber-500 transition duration-300">Início</a></li>
+                        <li><a href="#franquias" class="text-gray-400 hover:text-amber-500 transition duration-300">Franquias</a></li>
+                        <li><a href="#sobre" class="text-gray-400 hover:text-amber-500 transition duration-300">Sobre Nós</a></li>
+                        <li><a href="#contato" class="text-gray-400 hover:text-amber-500 transition duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Franquias</h4>
+                    <ul class="space-y-2 footer-links">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">São Paulo</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Curitiba</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Salvador</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Brasília</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contato</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-amber-500 mr-2"></i>
+                            <span class="text-gray-400">Av. Paulista, 1000 - SP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-amber-500 mr-2"></i>
+                            <span class="text-gray-400">(11) 9999-9999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-amber-500 mr-2"></i>
+                            <span class="text-gray-400">contato@gourmetexpress.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Gourmet Express. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Filter restaurants by region
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const restaurantCards = document.querySelectorAll('.restaurant-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-amber-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+                });
+
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-amber-500', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+
+                const filter = button.getAttribute('data-filter');
+
+                restaurantCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-region') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active-nav', 'text-gray-800');
+                    link.classList.add('text-gray-600');
+                });
+                
+                this.classList.add('active-nav', 'text-gray-800');
+                this.classList.remove('text-gray-600');
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Change navbar style on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
